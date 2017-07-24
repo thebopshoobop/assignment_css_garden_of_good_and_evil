@@ -1,10 +1,37 @@
 .insanity-low {
   font-family: 'Comic Sans';
-}
 
+  background-color: #000;
+}
+iframe {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
 .insanity-high {
   font-family: 'Webdings';
   color: #ddd;
   font-weight: 800;
   font-size: 48px !important;
+}
+
+.Green body {
+  color: #0f0 !important;
+}
+.Red body {
+  color: #f00 !important;
+}
+.Orange body {
+  color: #ffa500 !important;
+}
+.Purple body {
+  color: #f0f !important;
+}
+.Yellow body {
+  color: #ff0 !important;
+}
+.Blue body {
+  color: #00f !important;
 }
