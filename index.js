@@ -70,14 +70,14 @@ app.listen(port, () => {
   console.log('Serving!');
 });
 
-function getCookie(requestedFrom, responseFrom) {
+function getCookie(req, res) {
   // console.log(anythingReally);
-  let currentCookie = requestedFrom.cookies.uuid;
+  let currentCookie = req.cookies.uuid;
   if (!currentCookie) {
     currentCookie = uuid();
   }
 
-  responseFrom.cookie('uuid', currentCookie);
+  res.cookie('uuid', currentCookie);
   return currentCookie;
 }
 
