@@ -1,41 +1,50 @@
-const express = require("express");
-const exphbs = require("express-handlebars");
-const app = express();
-const fs = require("fs");
-const cookieParser = require("cookie-parser");
-const bodyParser = require("body-parser");
+let express = require('express');
+let exphbs = require('express-handlebars');
+let app = express();
 
-const port = process.env.PORT || "3000";
-var theCookie = false;
+const port = process.env.PORT || '3000';
+
+// parsers
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+
+// Templates!
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
+app.set('view engine', 'handlebars');
+
 // POST middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 // Cookie middleware
 app.use(cookieParser());
 
-// Templates!
-app.engine("handebars", exphbs({ defaultLayout: "main" }));
-app.set("view engine", "handlebars");
-
-app.get("/", (req, res) => {
+app.get('/', (req, res) => {
   // get status from cookie if it's set or use defaults
-  let status = theCookie || {
+  let theCookie = false;
+  let formStatus = theCookie || {
     good: true,
-    food: "",
-    color: "",
+    food: '',
+    color: '',
     insanity: 0
   };
-  // respond  with our template
-  res.render("index", status);
-  //res.end("index", status);
+  res.render('index', { status: formStatus });
 });
 
-app.post("/", (req, res) => {
+app.post('/', (req, res) => {
   // parse post data
+  let formStatus = {
+    good: Boolean(req.body.goodbad),
+    food: req.body.food,
+    color: req.body.color,
+    insanity: req.body.insanity
+  };
+  console.log(formStatus);
   // set cookie
-  // redirect back
+  res.redirect('back');
 });
 
-app.listen(port);
+app.listen(port, () => {
+  console.log('Serving!');
+});
 
 // Widget List
 // * Radio: good/evil
