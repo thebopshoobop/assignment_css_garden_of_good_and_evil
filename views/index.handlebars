@@ -1,4 +1,4 @@
-<form class="col-md-{{classes.columns}}" method="post">
+<form class="col-xs-{{classes.columns}}" method="post">
   <label for="GoodOrBad">Good or Evil</label>
   <div class="radio">
     <label>
@@ -30,7 +30,7 @@
   <button type="submit" class="btn btn-default">Submit</button>
 </form>
 
-<section class="col-md-{{classes.columns}} {{classes.lists}}">
+<section class="col-xs-{{classes.columns}} {{classes.lists}}">
   <h3>Likes</h3>
   <ul>
     {{#each status.person.likes as |like|}}
@@ -45,7 +45,7 @@
   </ul>
 </section>
 
-<section class="col-md-{{classes.columns}} {{classes.bio}}">
+<section class="col-xs-{{classes.columns}} {{classes.bio}}">
   <h3>Biography</h3>
   {{#each status.person.biography as |paragraph|}}
   <p>
@@ -54,7 +54,7 @@
   {{/each}}
 </section>
 
-<section class="col-md-{{classes.columns}} {{classes.resume}}">
+<section class="col-xs-{{classes.columns}} {{classes.resume}}">
   <h3>Resume</h3>
   {{#each status.person.resume as |section|}}
   <h4>{{section.title}}</h4>
