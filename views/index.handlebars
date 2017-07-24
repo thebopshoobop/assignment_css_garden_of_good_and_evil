@@ -1,0 +1,14 @@
+
+
+  <form >
+<div class="form-group">
+    <label for="GoodOrBad">Good or Bad</label>
+
+    <input type="radio" class="form-control" id="GoodOrBad" name="goodbad"  {{#if status.good}}
+    checked
+  {{/if}}value ="Good" >
+
+    <input type="radio" class="form-control" id="GoodOrBad" name="goodbad" {{#except status.good}}
+    checked
+  {{/except}} value ="Bad">
+  </div>
