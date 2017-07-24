@@ -1,4 +1,5 @@
 let express = require("express");
+let uuid = require("uuid/v1");
 let exphbs = require("express-handlebars");
 let app = express();
 
@@ -7,7 +8,8 @@ const port = process.env.PORT || "3000";
 // parsers
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
-
+var anythingReally = {};
+var colorArray = ["Green", "Red", "Orange", "Purple", "Yellow", "Blue"];
 // Templates!
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
@@ -19,14 +21,19 @@ app.use(cookieParser());
 
 app.get("/", (req, res) => {
   // get status from cookie if it's set or use defaults
-  let theCookie = false;
-  let formStatus = theCookie || {
+  let theCookie = CheckForCookie(req, res);
+  console.log("this is the get");
+  let formStatus = anythingReally[theCookie] || {
     good: true,
-    food: "",
-    color: "",
+    food: "Soylent Green",
+    color: "Green",
     insanity: 0
   };
-  res.render("index", { status: formStatus });
+  console.log(formStatus);
+  res.render("index", {
+    status: formStatus,
+    colors: colorArray
+  });
 });
 
 app.post("/", (req, res) => {
@@ -39,12 +46,24 @@ app.post("/", (req, res) => {
   };
   console.log(formStatus);
   // set cookie
+  let currentCookie = CheckForCookie(req, res);
+  anythingReally[currentCookie] = formStatus;
   res.redirect("back");
 });
 
 app.listen(port, () => {
   console.log("Serving!");
 });
+var CheckForCookie = function(requestedFrom, responseFrom) {
+  console.log(anythingReally);
+  let currentCookie = requestedFrom.cookies.uuid;
+  if (!currentCookie) {
+    currentCookie = uuid();
+  }
+
+  responseFrom.cookie("uuid", currentCookie);
+  return currentCookie;
+};
 
 // Widget List
 // * Radio: good/evil

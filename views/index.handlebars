@@ -12,18 +12,15 @@
   </div>
   <div class="form-group">
     <label for="GoodOrBad">Favorite Color</label>
-    <select name="color" id="favColor" class="form-control">
-      <option value="red">Red</option>
-      <option value="orange">Orange</option>
-      <option value="green">Green</option>
-      <option value="blue">Blue</option>
-      <option value="indigo">Indigo</option>
-      <option value="violet">Violet</option>
+    <select name="color" id="favColor" class="form-control" value={{status.color}}>
+      <option value={{status.color}} selected>{{status.color}}</option>
+      {{#each colors as |color|}}  <option value={{color}}>{{color}}</option>
+{{/each}}
     </select>
   </div>
   <div class="form-group">
-    <label for="insanity">Insanity Level</label>
-    <input name="insanity" type="range" min="0" max="11" class="form-control">
+    <label for="insanity" >Insanity Level</label>
+    <input name="insanity" type="range" min="0" max="11" class="form-control" value={{status.insanity}}>
   </div>
   <button type="submit" class="btn btn-default">Submit</button>
 </form>
