@@ -33,13 +33,13 @@
 <section class="col-md-6 {{classes.lists}}">
   <h3>Likes</h3>
   <ul>
-    {{#each content.likes as |like|}}
+    {{#each status.person.likes as |like|}}
     <li>{{like}}</li>
     {{/each}}
   </ul>
   <h3>Dislikes</h3>
   <ul>
-    {{#each content.dislikes as |dislike|}}
+    {{#each status.person.dislikes as |dislike|}}
     <li>{{dislike}}</li>
     {{/each}}
   </ul>
@@ -47,7 +47,7 @@
 
 <section class="col-md-6 {{classes.bio}}">
   <h3>Biography</h3>
-  {{#each content.biography as |paragraph|}}
+  {{#each status.person.biography as |paragraph|}}
   <p>
     {{paragraph}}
   </p>
@@ -56,7 +56,7 @@
 
 <section class="col-md-6 {{classes.resume}}">
   <h3>Resume</h3>
-  {{#each content.resume as |section|}}
+  {{#each status.person.resume as |section|}}
   <h4>{{section.title}}</h4>
   <p>
     {{section.body}}
