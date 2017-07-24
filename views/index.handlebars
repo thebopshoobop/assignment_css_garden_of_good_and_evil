@@ -1,11 +1,16 @@
-<form method="post">
-  <div class="form-group">
-    <label for="GoodOrBad">Good or Bad</label>
-
-    <input type="radio" class="form-control" id="GoodOrBad" name="goodbad" {{#if status.good}} checked {{/if}}value="1">
-
-    <input type="radio" class="form-control" id="GoodOrBad" name="goodbad" {{#unless status.good}} checked {{/unless}} value="0">
+<form class="col-md-6" method="post">
+  <label for="GoodOrBad">Good or Evil</label>
+  <div class="radio">
+    <label>
+      <input type="radio" class="radio-inline" id="GoodOrBad" name="goodbad" {{#if status.good}} checked {{/if}}value="1"> Good
+    </label>
   </div>
+  <div class="radio">
+    <label>
+      <input type="radio" class="radio-inline" id="GoodOrBad" name="goodbad" {{#unless status.good}} checked {{/unless}} value="0"> Evil
+    </label>
+  </div>
+
   <div class="form-group">
     <label for="GoodOrBad">Favorite Food</label>
     <input type="input" class="form-control" id="favFood" name="food" value="{{status.food}}">
@@ -19,8 +24,42 @@
     </select>
   </div>
   <div class="form-group">
-    <label for="insanity" >Insanity Level</label>
+    <label for="insanity">Insanity Level</label>
     <input name="insanity" type="range" min="0" max="11" class="form-control" value={{status.insanity}}>
   </div>
   <button type="submit" class="btn btn-default">Submit</button>
 </form>
+
+<section class="col-md-6 {{classes.lists}}">
+  <h3>Likes</h3>
+  <ul>
+    {{#each content.likes as |like|}}
+    <li>{{like}}</li>
+    {{/each}}
+  </ul>
+  <h3>Dislikes</h3>
+  <ul>
+    {{#each content.dislikes as |dislike|}}
+    <li>{{dislike}}</li>
+    {{/each}}
+  </ul>
+</section>
+
+<section class="col-md-6 {{classes.bio}}">
+  <h3>Biography</h3>
+  {{#each content.biography as |paragraph|}}
+  <p>
+    {{paragraph}}
+  </p>
+  {{/each}}
+</section>
+
+<section class="col-md-6 {{classes.resume}}">
+  <h3>Resume</h3>
+  {{#each content.resume as |section|}}
+  <h4>{{section.title}}</h4>
+  <p>
+    {{section.body}}
+  </p>
+  {{/each}}
+</section>
